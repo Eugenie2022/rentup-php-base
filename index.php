@@ -1,3 +1,9 @@
+<?php
+include_once('./include/functions.php');
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="fr-FR">
 
@@ -31,43 +37,16 @@
                     <h2>Featured Property Types</h2>
                     <p>Find All Type of Property.</p>
                 </header>
-
                 <div class="property-type-list">
+                    <?php foreach (getPropertyTypes() as $propertytype) : ?>
                     <article class="card">
                         <div class="icon">
-                            <i class="fa fa-user"></i>
+                            <?php echo $propertytype['picto']; ?>
                         </div>
-                        <h3>Maison</h3>
-                        <p>122 propriétés</p>
+                        <h3><?php echo $propertytype['type']; ?></h3>
+                        <p><?php echo $propertytype['value']; ?> propriétés</p>
                     </article>
-                    <article class="card">
-                        <div class="icon">
-                            <i class="fa fa-home"></i>
-                        </div>
-                        <h3>Appartement</h3>
-                        <p>82 propriétés</p>
-                    </article>
-                    <article class="card">
-                        <div class="icon">
-                            <i class="fa fa-home"></i>
-                        </div>
-                        <h3>Appartement</h3>
-                        <p>82 propriétés</p>
-                    </article>
-                    <article class="card">
-                        <div class="icon">
-                            <i class="fa fa-home"></i>
-                        </div>
-                        <h3>Appartement</h3>
-                        <p>82 propriétés</p>
-                    </article>
-                    <article class="card">
-                        <div class="icon">
-                            <i class="fa fa-home"></i>
-                        </div>
-                        <h3>Appartement</h3>
-                        <p>82 propriétés</p>
-                    </article>
+                    <?php endforeach ?>
                 </div>
             </div>
         </section>
@@ -83,106 +62,37 @@
                 </header>
 
                 <div class="property-list">
+                    <?php foreach (getProperties() as $property) : ?>
+                    <?php if(isSoldOrRented($property)): ?>
                     <article class="card">
                         <div class="card-img-container">
-                            <img src="./images/p-1.png" alt="Red Carpet Real Estate">
+                            <img src="./images/<?php echo $property['image']; ?>" alt="Red Carpet Real Estate">
                         </div>
                         <div class="card-content">
                             <header class="card-content-header">
-                                <div class="badge badge-warning">For Rent</div>
+                                <div class="badge badge-warning"><?php echo $property['status']; ?></div>
                                 <i class="fa fa-heart-o"></i>
                             </header>
-                            <h3>Red Carpet Real Estate</h3>
+                            <h3><?php echo $property['name']; ?></h3>
                             <p>
                                 <i class="fa fa-map-marker"></i>
-                                210 Zirak Road, Canada
+                                <?php echo $property['street'] . ', ' . $property['postal_code'] . ', ' . $property['city'] . ', ' .
+                                    $property['state'] . ', ' . $property['country']; ?>
                             </p>
                         </div>
                         <footer class="card-footer">
                             <div>
                                 <div class="btn btn-primary">
-                                    $3,700
+                                    <?php echo $property['price']; ?>
                                 </div>
                                 <span>/sqft</span>
                             </div>
-                            <div>Apartment</div>
+                            <div><?php echo $property['type']; ?></div>
                         </footer>
                     </article>
-                    <article class="card">
-                        <div class="card-img-container">
-                            <img src="./images/test.jpg" alt="Red Carpet Real Estate">
-                        </div>
-                        <div class="card-content">
-                            <header class="card-content-header">
-                                <div class="badge badge-success">For Sale</div>
-                                <i class="fa fa-heart-o"></i>
-                            </header>
-                            <h3>Red Carpet Real Estate</h3>
-                            <p>
-                                <i class="fa fa-map-marker"></i>
-                                210 Zirak Road, Canada
-                            </p>
-                        </div>
-                        <footer class="card-footer">
-                            <div>
-                                <div class="btn btn-primary">
-                                    $3,700
-                                </div>
-                                <span>/sqft</span>
-                            </div>
-                            <div>Apartment</div>
-                        </footer>
-                    </article>
-                    <article class="card">
-                        <div class="card-img-container">
-                            <img src="./images/p-3.png" alt="Red Carpet Real Estate">
-                        </div>
-                        <div class="card-content">
-                            <header class="card-content-header">
-                                <div class="badge badge-warning">For Rent</div>
-                                <i class="fa fa-heart-o"></i>
-                            </header>
-                            <h3>Red Carpet Real Estate</h3>
-                            <p>
-                                <i class="fa fa-map-marker"></i>
-                                210 Zirak Road, Canada
-                            </p>
-                        </div>
-                        <footer class="card-footer">
-                            <div>
-                                <div class="btn btn-primary">
-                                    $3,700
-                                </div>
-                                <span>/sqft</span>
-                            </div>
-                            <div>Apartment</div>
-                        </footer>
-                    </article>
-                    <article class="card">
-                        <div class="card-img-container">
-                            <img src="./images/p-4.png" alt="Red Carpet Real Estate">
-                        </div>
-                        <div class="card-content">
-                            <header class="card-content-header">
-                                <div class="badge badge-warning">For Rent</div>
-                                <i class="fa fa-heart-o"></i>
-                            </header>
-                            <h3>Red Carpet Real Estate</h3>
-                            <p>
-                                <i class="fa fa-map-marker"></i>
-                                210 Zirak Road, Canada
-                            </p>
-                        </div>
-                        <footer class="card-footer">
-                            <div>
-                                <div class="btn btn-primary">
-                                    $3,700
-                                </div>
-                                <span>/sqft</span>
-                            </div>
-                            <div>Apartment</div>
-                        </footer>
-                    </article>
+                    <?php endif; ?>
+                    <?php endforeach ?>
+
                 </div>
 
             </div>
@@ -264,22 +174,24 @@
                         officia quia atque nam.</p>
                 </header>
                 <div class="agents-list">
+                    <?php foreach (getAgents() as $agent) : ?>
                     <article class="card">
                         <div class="card-img-container">
                             <div class="badge">
-                                72 listings
+                                <?= getAgentsPropertyCount($agent); ?>
+                                listings
                             </div>
                             <div class="agent-img">
                                 <span>
                                     <img class="check" src="./images/verified.svg" alt="">
                                 </span>
-                                <img class="agent-photo" src="./images/team-2.jpg" alt="portrait-agent-2">
+                                <img class="agent-photo" src="./images/<?php echo $agent['profil_picture']; ?>" alt="portrait-agent-2">
                             </div>
                             <div class="agent-localisation">
-                                <i class="fa fa-map-marker"></i> 2272 Briarwood Drive
+                                <i class="fa fa-map-marker"></i> <?php echo $agent['location']; ?>
                             </div>
                             <div class="agent-name">
-                                <h3>Anne K. Young</h3>
+                                <h3><?php echo $agent['firstname'] . ' ' . $agent['lastname'] ?></h3>
                             </div>
                             <div class="agent-contact">
                                 <ul>
@@ -316,113 +228,7 @@
                             </footer>
                         </div>
                     </article>
-
-                    <article class="card">
-                        <div class="card-img-container">
-                            <div class="badge">
-                                50 listings
-                            </div>
-                            <div class="agent-img">
-                                <span>
-                                    <img class="check" src="./images/verified.svg" alt="">
-                                </span>
-                                <img class="agent-photo" src="./images/team-1.jpg" alt="portrait-agent-2">
-                            </div>
-                            <div class="agent-localisation">
-                                <i class="fa fa-map-marker"></i> Montreal Canada
-                            </div>
-                            <div class="agent-name">
-                                <h3>Harijeet M. Siller</h3>
-                            </div>
-                            <div class="agent-contact">
-                                <ul>
-                                    <li>
-                                        <a href="#">
-                                            <i id="facebook" class="fa fa-facebook"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i id="linkedin" class="fa fa-linkedin"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i id="instagram" class="fa fa-instagram"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i id="twitter" class="fa fa-twitter"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <footer class="card-footer">
-                                <div class="btn btn-primary">
-                                    <i class="fa fa-envelope-o"></i>
-                                    Message
-                                </div>
-                                <div class="btn btn-secondary">
-                                    <i class="fa fa-phone"></i>
-                                </div>
-                            </footer>
-                        </div>
-                    </article>
-
-                    <article class="card">
-                        <div class="card-img-container">
-                            <div class="badge">
-                                47 listings
-                            </div>
-                            <div class="agent-img">
-                                <span>
-                                    <img class="check" src="./images/verified.svg" alt="">
-                                </span>
-                                <img class="agent-photo" src="./images/team-4.jpg" alt="portrait-agent-2">
-                            </div>
-                            <div class="agent-localisation">
-                                <i class="fa fa-map-marker"></i> Liverpool Canada
-                            </div>
-                            <div class="agent-name">
-                                <h3>Sargam S. Singh</h3>
-                            </div>
-                            <div class="agent-contact">
-                                <ul>
-                                    <li>
-                                        <a href="#">
-                                            <i id="facebook" class="fa fa-facebook"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i id="linkedin" class="fa fa-linkedin"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i id="instagram" class="fa fa-instagram"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i id="twitter" class="fa fa-twitter"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <footer class="card-footer">
-                                <div class="btn btn-primary">
-                                    <i class="fa fa-envelope-o"></i>
-                                    Message
-                                </div>
-                                <div class="btn btn-secondary">
-                                    <i class="fa fa-phone"></i>
-                                </div>
-                            </footer>
-                        </div>
-                    </article>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </section>
