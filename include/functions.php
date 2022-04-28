@@ -48,18 +48,6 @@ function isSoldOrRented($property): bool
 
 }
 
-function getThreeProperties() : array
-{
-    $db = connectDatabase();
-
-    $sqlQuery = 'SELECT * FROM property, propertytype WHERE LIMIT 3;';
-    $parameters = [];
-
-    $threepropertiesStatement = $db->prepare($sqlQuery);
-    $threepropertiesStatement->execute($parameters);
-
-    return $threepropertiesStatement->fetchAll();
-}
 
 function getAgents(): array
 {
@@ -88,12 +76,12 @@ function getAgentsPropertyCount($agent) : array
 
 }
 
-function createProperty($name, $street, $postalCode, $city, $state, $price,  $status, $createdAt, $image, $sellerId, $propertyTypeId) {
+function createProperty($name, $street, $postalCode, $city, $state, $price,  $status,  $image, $sellerId, $propertyTypeId) {
 
     $db = connectDatabase();
 
-    $sqlQuery = "INSERT INTO property (name, street, postal_code, city, state, price, status, created_at, image, Seller_id, PropertyType_id) VALUE 
-    (:name, :street, :postal_code, :city, :state, :price, :status, :created_at, :image, :Seller_id, :PropertyType_id)";
+    $sqlQuery = "INSERT INTO property (name, street, postal_code, city, state, country, price, status, created_at, image, Seller_id, PropertyType_id) VALUE 
+    (:name, :street, :postal_code, :city, :state, :country, :price, :status, NOW(), :image, :Seller_id, :PropertyType_id)";
     $insertProperty = $db->prepare($sqlQuery);
     return $insertProperty->execute([
         'name' => $name,
@@ -101,12 +89,14 @@ function createProperty($name, $street, $postalCode, $city, $state, $price,  $st
         'postal_code' => $postalCode,
         'city' => $city,
         'state' => $state,
+        'country' => $state,
         'price' => $price,
         'status' => $status,
-        'created_at' => $createdAt,
         'image' => $image,
         'Seller_id' => $sellerId,
         'PropertyType_id' => $propertyTypeId
     ]);
 }
+
+
 

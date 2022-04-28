@@ -66,7 +66,7 @@ include_once('./include/functions.php');
                     <?php if(isSoldOrRented($property)): ?>
                     <article class="card">
                         <div class="card-img-container">
-                            <img src="./images/<?php echo $property['image']; ?>" alt="Red Carpet Real Estate">
+                            <img src="./images/<?php echo $property['image']; ?>" alt="<?php echo $property['name']; ?>">
                         </div>
                         <div class="card-content">
                             <header class="card-content-header">
