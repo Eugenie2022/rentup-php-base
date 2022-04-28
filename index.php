@@ -88,6 +88,9 @@ include_once('./include/functions.php');
                                 <span>/sqft</span>
                             </div>
                             <div><?php echo $property['type']; ?></div>
+                            <a href="modifyProperty.php?id=<?php echo $property['id_property']; ?>" class="btn btn-secondary">
+                                Modifier
+                            </a>
                         </footer>
                     </article>
                     <?php endif; ?>

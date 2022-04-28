@@ -60,6 +60,8 @@ if (isset($_POST['name'], $_POST['street'], $_POST['postal_code'], $_POST['city'
                 <h1>Ajouter une propriété</h1>
             </div>
         </section>
+    </br>
+
         <div class="container">
         <form enctype="multipart/form-data" action="createProperty.php" method="POST">
         <?php if (isset($messageErreur)): ?>

@@ -98,5 +98,54 @@ function createProperty($name, $street, $postalCode, $city, $state, $price,  $st
     ]);
 }
 
+function modifyProperty($name, $street, $postalCode, $city, $state, $price,  $status,  $image, $sellerId, $propertyTypeId, $idProperty) {
+
+    $db = connectDatabase();
+
+    $sqlQuery = "UPDATE property SET 
+                    name = :name, 
+                    street = :street, 
+                    postal_code = :postal_code,
+                    city = :city, 
+                    state = :state, 
+                    country = :country,
+                    price = :price, 
+                    status = :status, 
+                    created_at = NOW(), 
+                    image = :image, 
+                    Seller_id = :Seller_id, 
+                    PropertyType_id = :PropertyType_id
+                WHERE id_property = :id_property;";
+    $modifyProperty = $db->prepare($sqlQuery);
+    return $modifyProperty->execute([
+        'name' => $name,
+        'street' => $street,
+        'postal_code' => $postalCode,
+        'city' => $city,
+        'state' => $state,
+        'country' => $state,
+        'price' => $price,
+        'status' => $status,
+        'image' => $image,
+        'Seller_id' => $sellerId,
+        'PropertyType_id' => $propertyTypeId,
+        'id_property' => $idProperty
+    ]);
+}
+
+function getPropertiesId(): array
+{
+    $db = connectDatabase();
+
+    $sqlQuery = 'SELECT * FROM property WHERE id_property = ?;';
+    $parameters = [];
+
+    $propertiesIdStatement = $db->prepare($sqlQuery);
+    $propertiesIdStatement->execute(array($_GET['id']));
+
+    return $propertiesIdStatement->fetchAll();
+
+}
+
 
 
