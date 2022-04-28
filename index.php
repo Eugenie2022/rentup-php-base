@@ -66,24 +66,23 @@ include_once('./include/functions.php');
                     <?php if(isSoldOrRented($property)): ?>
                     <article class="card">
                         <div class="card-img-container">
-                            <img src="./images/<?php echo $property['image']; ?>" alt="<?php echo $property['name']; ?>">
+                            <img src="./images/<?php echo htmlentities($property['image']); ?>" alt="<?php echo htmlentities($property['name']); ?>">
                         </div>
                         <div class="card-content">
                             <header class="card-content-header">
                                 <div class="badge badge-warning"><?php echo $property['status']; ?></div>
                                 <i class="fa fa-heart-o"></i>
                             </header>
-                            <h3><?php echo $property['name']; ?></h3>
+                            <h3><?php echo htmlentities($property['name']); ?></h3>
                             <p>
                                 <i class="fa fa-map-marker"></i>
-                                <?php echo $property['street'] . ', ' . $property['postal_code'] . ', ' . $property['city'] . ', ' .
-                                    $property['state'] . ', ' . $property['country']; ?>
+                                <?php echo getFullAddress($property); ?>
                             </p>
                         </div>
                         <footer class="card-footer">
                             <div>
                                 <div class="btn btn-primary">
-                                    <?php echo $property['price']; ?>
+                                    <?php echo htmlentities($property['price']); ?>
                                 </div>
                                 <span>/sqft</span>
                             </div>
@@ -181,7 +180,7 @@ include_once('./include/functions.php');
                     <article class="card">
                         <div class="card-img-container">
                             <div class="badge">
-                                <?= getAgentsPropertyCount($agent); ?>
+                                <?= getAgentsPropertyCount() ?>
                                 listings
                             </div>
                             <div class="agent-img">

@@ -54,8 +54,13 @@ if (isset($_POST['name'], $_POST['street'], $_POST['postal_code'], $_POST['city'
 
 <?php include('./include/header.html');?>
     <main>
+        </br>
+        </br>
+        </br>
+        </br>
+        </br>
 
-        <section class="section-home">
+        <section>
             <div class="container section-home-content">
                 <h1>Ajouter une propriété</h1>
             </div>

@@ -23,7 +23,7 @@ if (isset($_POST['name'], $_POST['street'], $_POST['postal_code'], $_POST['city'
     } else {
         $messageErreur = "Type de fichier image non autorisé";
     }
-    if (empty($_POST['name']) || empty($_POST['street']) || empty($_POST['postal_code']) || empty($_POST['city']) || empty($_POST['state']) || empty($_POST['price']) || empty($_POST['status']) || empty($_FILES['image']['name']) || empty($_POST['Seller_id']) || empty($_POST['PropertyType_id'])) {
+    if (empty($_POST['name']) || empty($_POST['street']) || empty($_POST['postal_code']) || empty($_POST['city']) || empty($_POST['state']) || empty($_POST['price']) || empty($_POST['status']) || empty($_POST['Seller_id']) || empty($_POST['PropertyType_id'])) {
         $messageErreur = 'Veuillez saisir tous les champs requis';
     } else if (modifyProperty($_POST['name'], $_POST['street'], $_POST['postal_code'], $_POST['city'], $_POST['state'], $_POST['price'], $_POST['status'], $_FILES['image']['name'], $_POST['Seller_id'], $_POST['PropertyType_id'], $_POST['id_property']) === true) {
         //Redirect vers l'accueil
@@ -53,9 +53,13 @@ if (isset($_POST['name'], $_POST['street'], $_POST['postal_code'], $_POST['city'
 <!-- https://themezhub.net/rentup-live/rentup/home-3.html -->
 
 <?php include('./include/header.html');?>
-<br>
+</br>
+</br>
+</br>
+</br>
+</br>
 
-    <section class="section-home">
+    <section>
         <div class="container section-home-content">
             <h1>Modifier la propriété</h1>
         </div>
@@ -106,6 +110,8 @@ if (isset($_POST['name'], $_POST['street'], $_POST['postal_code'], $_POST['city'
                     <option value="<?php echo $property['status'] ;?>"><?php echo $property['status'] ;?></option>
                     <option value="A louer">A louer</option>
                     <option value="A vendre">A vendre</option>
+                    <option value="Vendu">Vendu</option>
+                    <option value="Loué">Loué</option>
                 </select>
             </div>
             <div class="mb-3">

@@ -40,7 +40,7 @@ function getProperties(): array
 {
     $db = connectDatabase();
 
-    $sqlQuery = 'SELECT * FROM property, propertytype, seller WHERE property.PropertyType_id = propertytype.id AND property.Seller_id = seller.id ORDER BY created_at;';
+    $sqlQuery = 'SELECT * FROM property, propertytype, seller WHERE property.PropertyType_id = propertytype.id AND property.Seller_id = seller.id ORDER BY created_at DESC;';
     $parameters = [];
 
     $propertiesStatement = $db->prepare($sqlQuery);
@@ -76,11 +76,11 @@ function getAgents(): array
     return $agentsStatement->fetchAll();
 }
 
-function getAgentsPropertyCount($agent) : array
+function getAgentsPropertyCount() : array
 {
     $db = connectDatabase();
 
-    $sqlQuery = 'SELECT COUNT(seller.id) FROM seller, property WHERE property.Seller_id = Seller.id AND Seller.id = ' . $agent['id'];
+    $sqlQuery = 'SELECT COUNT(seller.id) FROM seller, property WHERE property.Seller_id = Seller.id WHERE seller.id = :sellerid';
     $parameters = [];
 
     $agentsPropertyCount = $db->prepare($sqlQuery);
@@ -166,4 +166,9 @@ function getFullName($agent): string
     return htmlentities($agent['firstname'] . ' ' . $agent['lastname']);
 }
 
+function getFullAddress($property): string
+{
+    return htmlentities($property['street'] . ', ' . $property['postal_code'] . ', ' . $property['city'] . ', ' .
+        $property['state'] . ', ' . $property['country']);
+}
 
