@@ -180,7 +180,7 @@ include_once('./include/functions.php');
                     <article class="card">
                         <div class="card-img-container">
                             <div class="badge">
-                                <?= getAgentsPropertyCount() ?>
+                                <?= getAgentsPropertyCount() . $agent['id'] ?>
                                 listings
                             </div>
                             <div class="agent-img">

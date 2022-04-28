@@ -76,11 +76,11 @@ function getAgents(): array
     return $agentsStatement->fetchAll();
 }
 
-function getAgentsPropertyCount() : array
+function getAgentsPropertyCount() : string
 {
     $db = connectDatabase();
 
-    $sqlQuery = 'SELECT COUNT(seller.id) FROM seller, property WHERE property.Seller_id = Seller.id WHERE seller.id = :sellerid';
+    $sqlQuery = 'SELECT COUNT(seller.id) FROM seller, property WHERE property.Seller_id = Seller.id';
     $parameters = [];
 
     $agentsPropertyCount = $db->prepare($sqlQuery);
