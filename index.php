@@ -62,7 +62,7 @@ include_once('./include/functions.php');
                 </header>
 
                 <div class="property-list">
-                    <?php foreach (getProperties() as $property) : ?>
+                    <?php foreach (getPropertiesFirstPage() as $property) : ?>
                     <?php if(isSoldOrRented($property)): ?>
                     <article class="card">
                         <div class="card-img-container">
@@ -95,8 +95,8 @@ include_once('./include/functions.php');
                     </article>
                     <?php endif; ?>
                     <?php endforeach ?>
-
                 </div>
+                <div><a href="propertyList.php">Voir toutes les propriétés</a></div>
 
             </div>
         </section>
@@ -194,7 +194,7 @@ include_once('./include/functions.php');
                                 <i class="fa fa-map-marker"></i> <?php echo $agent['location']; ?>
                             </div>
                             <div class="agent-name">
-                                <h3><?php echo $agent['firstname'] . ' ' . $agent['lastname'] ?></h3>
+                                <h3><?php echo getFullName($agent) ?></h3>
                             </div>
                             <div class="agent-contact">
                                 <ul>

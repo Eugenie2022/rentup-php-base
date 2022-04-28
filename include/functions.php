@@ -22,11 +22,25 @@ function getPropertyTypes(): array
     return $propertytypesStatement->fetchAll();
 }
 
+function getPropertiesFirstPage(): array
+{
+    $db = connectDatabase();
+
+    $sqlQuery = 'SELECT * FROM property, propertytype WHERE property.PropertyType_id = propertytype.id ORDER BY created_at DESC LIMIT 4;';
+    $parameters = [];
+
+    $propertiesStatement = $db->prepare($sqlQuery);
+    $propertiesStatement->execute($parameters);
+
+    return $propertiesStatement->fetchAll();
+
+}
+
 function getProperties(): array
 {
     $db = connectDatabase();
 
-    $sqlQuery = 'SELECT * FROM property, propertytype WHERE property.PropertyType_id = propertytype.id ORDER BY created_at DESC;';
+    $sqlQuery = 'SELECT * FROM property, propertytype, seller WHERE property.PropertyType_id = propertytype.id AND property.Seller_id = seller.id ORDER BY created_at;';
     $parameters = [];
 
     $propertiesStatement = $db->prepare($sqlQuery);
@@ -147,5 +161,9 @@ function getPropertiesId(): array
 
 }
 
+function getFullName($agent): string
+{
+    return htmlentities($agent['firstname'] . ' ' . $agent['lastname']);
+}
 
 
