@@ -79,10 +79,14 @@ function getAgents(): array
 function getAgentsPropertyCount($id) : int
 {
     $db = connectDatabase();
+
     $sqlQuery = 'SELECT COUNT(seller_id) FROM property LEFT JOIN seller ON property.Seller_id = seller.id WHERE seller_id =' . $id;
-    $propertyStatement = $db->prepare($sqlQuery);
-    $propertyStatement->execute();
-    return $propertyStatement->fetchColumn();
+    $parameters = [];
+
+    $propertyCountStatement = $db->prepare($sqlQuery);
+    $propertyCountStatement->execute($parameters);
+
+    return $propertyCountStatement->fetchColumn();
 }
 
 function createProperty($name, $street, $postalCode, $city, $state, $price,  $status,  $image, $sellerId, $propertyTypeId) {
