@@ -151,7 +151,6 @@ function getPropertiesId(): array
     $db = connectDatabase();
 
     $sqlQuery = 'SELECT * FROM property WHERE id_property = ?;';
-    $parameters = [];
 
     $propertiesIdStatement = $db->prepare($sqlQuery);
     $propertiesIdStatement->execute(array($_GET['id']));

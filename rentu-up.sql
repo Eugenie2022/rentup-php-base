@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : jeu. 28 avr. 2022 à 21:06
+-- Généré le : ven. 29 avr. 2022 à 12:35
 -- Version du serveur : 5.7.36
 -- Version de PHP : 8.0.13
 
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `property` (
   PRIMARY KEY (`id_property`),
   KEY `fk_Property_Seller_idx` (`Seller_id`),
   KEY `fk_Property_PropertyType1_idx` (`PropertyType_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `property`
@@ -61,7 +61,9 @@ INSERT INTO `property` (`id_property`, `name`, `street`, `city`, `postal_code`, 
 (20, 'Excepturi assumenda ', 'Velit dicta corporis', 'Obcaecati', '53368', 'Fugiat', 'Fugiat', '$5.377', 'A vendre', '2022-04-28', 'pexels-cottonbro-4918150.jpg', 1, 3),
 (21, 'Excepturi assumenda', 'Ipsam dolor voluptat', 'Magnam consequatur ', 'Eum maxime quam in s', 'Nemo placeat numqua', 'Nemo placeat numqua', '661', 'Vendu', '2022-04-28', 'pexels-ksenia-chernaya-8987430.jpg', 2, 2),
 (22, 'Ethan Mccullough', 'Autem est aut volupt', 'Rerum dolores enim e', 'Aute ipsum nisi obca', 'Nulla qui dolore bla', 'Nulla qui dolore bla', '291', 'A louer', '2022-04-28', 'pexels-ceyda-çiftci-7670334.jpg', 3, 4),
-(23, 'Aspen Cruz', 'Fugiat in qui occae', 'Dolores est pariatur', 'Voluptates praesenti', 'Explicabo Laborum ', 'Explicabo Laborum ', '973', 'A louer', '2022-04-28', 'pexels-anna-nekrashevich-8989497.jpg', 3, 2);
+(23, 'Aspen Cruz', 'Fugiat in qui occae', 'Dolores est pariatur', 'Voluptates praesenti', 'Explicabo Laborum ', 'Explicabo Laborum ', '973', 'A louer', '2022-04-28', 'pexels-anna-nekrashevich-8989497.jpg', 3, 2),
+(24, 'Vielka Michael', 'Optio porro cum qui', 'Occaecat anim aut ex', 'Labore in sint in eo', 'Tempora possimus ni', 'Tempora possimus ni', '761', 'A vendre', '2022-04-29', 'pexels-pixabay-271624.jpg', 1, 4),
+(25, 'Janna Sandoval', 'Laborum Debitis sed', 'Iure id elit aut es', 'Aliquid ullamco ut c', 'Voluptate aut expedi', 'Voluptate aut expedi', '804', 'A vendre', '2022-04-29', 'pexels-pixabay-158179.jpg', 3, 4);
 
 -- --------------------------------------------------------
 
